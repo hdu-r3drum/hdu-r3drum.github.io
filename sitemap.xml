@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>hhttps://hdu-r3drum.github.io/2022/08/02/什么是token？什么是session？什么是cookie？/</loc>
+    
+    <lastmod>2022-08-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>hhttps://hdu-r3drum.github.io/2022/08/02/什么是光猫？什么是路由器？/</loc>
     
     <lastmod>2022-08-02</lastmod>
