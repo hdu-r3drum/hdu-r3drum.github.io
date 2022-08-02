@@ -43,9 +43,9 @@
 
   
   
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css">
   
   
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
   
 <meta name="generator" content="Hexo 6.2.0"></head>
 
@@ -434,7 +434,7 @@
     
   <section id="comments">
   	
-
+           
     
   </section>
 
@@ -587,24 +587,24 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
    
     
-<script src="//cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js"></script>
-<script>
-var gitment = new Gitment({
-  // id默认为当前页面url，如果url后带参数或锚点，gitment要重新初始化
-  // https://github.com/imsun/gitment/issues/55
-  // 解决方案：id:window.location.pathname,或者将id设置为当前页面标题
-  id: 'How to upload a new post?', 
-  owner: 'hdu-r3drum', // 可以是你的GitHub用户名，也可以是github id
-  repo: 'CommentSystem',
-  oauth: {
-    client_id: 'c921c50aedbd0e869105',
-    client_secret: 'dc5796e146e2ff837e91106e51c5efa33cf77452',
-  }
-})
-gitment.render('comments')
-</script>
-
-
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: 'c921c50aedbd0e869105#必须. GitHub Application Client ID.',
+    clientSecret: 'dc5796e146e2ff837e91106e51c5efa33cf77452#必须. GitHub Application Client Secret.',
+    repo: 'https://github.com/hdu-r3drum/CommentSystem.git#必须. GitHub repository.',
+    owner: 'hdu-r3drum#必须. GitHub repository 所有者，可以是个人或者组织。',
+    admin: ['hdu-r3drum#必须. GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    language: 'zh-CN',
+    enableHotKey: 'true'
+  })
+  gitalk.render('comments')
+  </script>
+      
 
 
 
