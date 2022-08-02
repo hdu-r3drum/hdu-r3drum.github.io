@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>R3drum</title>
+  
+  <subtitle>A common run of men</subtitle>
+  <link href="hhttps://hdu-r3drum.github.io/atom.xml" rel="self"/>
+  
+  <link href="hhttps://hdu-r3drum.github.io/"/>
+  <updated>2022-08-02T08:06:57.780Z</updated>
+  <id>hhttps://hdu-r3drum.github.io/</id>
+  
+  <author>
+    <name>L</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>什么是光猫？什么是路由器？</title>
+    <link href="hhttps://hdu-r3drum.github.io/2022/08/02/什么是光猫？什么是路由器？/"/>
+    <id>hhttps://hdu-r3drum.github.io/2022/08/02/什么是光猫？什么是路由器？/</id>
+    <published>2022-08-02T08:03:18.000Z</published>
+    <updated>2022-08-02T08:06:57.780Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是光猫？什么是路由器？他们俩的区别是什么？"><a href="#什么是光猫？什么是路由器？他们俩的区别是什么？" class="headerlink" title="什么是光猫？什么是路由器？他们俩的区别是什么？"></a>什么是光猫？什么是路由器？他们俩的区别是什么？</h2><h3 id="光猫"><a href="#光猫" class="headerlink" title="光猫"></a>光猫</h3><p>光调制解调器，也称为单端口光端机或光猫，是针对特殊用户环境而研发的一种三件一套的光纤传输设备。该设备采用大规模集成芯片，电路简单，功耗低，可靠性高，具有完整的告警状态指示和完善的网管功能。</p><p>调制的目的是把要传输的信息转换成可以通过无线信道传物的形式,也就是把信号变换到适合传输的频率。一般来说,调制是把基带信号转变成一个频率较高的带通信号。调制是用基带信号按照一定规则去改变高频载波的幅度、相位或者频率这些参数的一个过程。</p><h3 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h3><p>路由器（Router）是连接两个或多个网络的硬件设备，在网络间起网关的作用，是读取每一个数据包中的地址然后决定如何传送的专用智能性的网络设备。它能够理解不同的协议，例如某个局域网使用的以太网协议，因特网使用的TCP&#x2F;IP协议。这样，路由器可以分析各种不同类型网络传来的数据包的目的地址，把非TCP&#x2F;IP网络的地址转换成TCP&#x2F;IP地址，或者反之；再根据选定的路由算法把各数据包按最佳路线传送到指定位置。所以路由器可以把非TCP&#x2F;IP网络连接到因特网上。</p><h3 id="两者的区别？"><a href="#两者的区别？" class="headerlink" title="两者的区别？"></a>两者的区别？</h3><p>简单来说，光猫是连光纤的。路由器是连网线的。</p><p>那么原理是为什么呢？ ——你在移动电信联通这些互联网代理公司上支付宽带费时，会给你拉过来一根细细的光纤线，连上光猫能将里面的光信号转换为电信号再通过你的网线上，可见网线不能传输光信号，路由器也不能转换光信号。所以这个过程一定需要光猫。而整个过程的顺序是，光纤光信号通过光猫转换电信号再通过网线连通电脑主机或是通过路由器再转换为无线信号。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;什么是光猫？什么是路由器？他们俩的区别是什么？&quot;&gt;&lt;a href=&quot;#什么是光猫？什么是路由器？他们俩的区别是什么？&quot; class=&quot;headerlink&quot; title=&quot;什么是光猫？什么是路由器？他们俩的区别是什么？&quot;&gt;&lt;/a&gt;什么是光猫？什么是路由器？他们俩的</summary>
+      
+    
+    
+    
+    
+    <category term="Notes" scheme="hhttps://hdu-r3drum.github.io/tags/Notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to upload a new post?</title>
+    <link href="hhttps://hdu-r3drum.github.io/2022/08/02/How-to-upload-a-new-post/"/>
+    <id>hhttps://hdu-r3drum.github.io/2022/08/02/How-to-upload-a-new-post/</id>
+    <published>2022-08-02T03:12:43.000Z</published>
+    <updated>2022-08-02T03:51:19.018Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is my first tutorial of how to upload a new post. It is based on GitPage and Hexo framework.</p><h2 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><p>Use this command:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;Your post name&quot;</span></span><br></pre></td></tr></table></figure><p>Okay. Your post file has been generated in &#x2F;source&#x2F;_posts&#x2F;Your-post-name.md. Now you can edit your post whatever you want.</p><p>*Recommanding Typroa to edit markdown file</p><h2 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h2><h3 id="Generate-static-web-files"><a href="#Generate-static-web-files" class="headerlink" title="Generate static web files"></a>Generate static web files</h3><p>Use this command:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure><p>So much for that, your local files is ready.</p><h2 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h2><h3 id="Upload-your-changes-x2F-Deploy-your-Website"><a href="#Upload-your-changes-x2F-Deploy-your-Website" class="headerlink" title="Upload your changes&#x2F;Deploy your Website"></a>Upload your changes&#x2F;Deploy your Website</h3><p>Use this command:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure><p>After that, you can goto your website and see the amazing changes!</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is my first tutorial of how to upload a new post. It is based on GitPage and Hexo framework.&lt;/p&gt;
+&lt;h2 id=&quot;Step-1&quot;&gt;&lt;a href=&quot;#Step-1&quot; c</summary>
+      
+    
+    
+    
+    
+    <category term="Tutorial" scheme="hhttps://hdu-r3drum.github.io/tags/Tutorial/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Test</title>
+    <link href="hhttps://hdu-r3drum.github.io/2022/07/31/Test/"/>
+    <id>hhttps://hdu-r3drum.github.io/2022/07/31/Test/</id>
+    <published>2022-07-31T14:48:24.000Z</published>
+    <updated>2022-07-31T14:55:19.513Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is my first post.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;This is my first post.&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="hhttps://hdu-r3drum.github.io/2022/07/31/hello-world/"/>
+    <id>hhttps://hdu-r3drum.github.io/2022/07/31/hello-world/</id>
+    <published>2022-07-31T14:14:20.584Z</published>
+    <updated>2022-07-31T14:14:20.584Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
