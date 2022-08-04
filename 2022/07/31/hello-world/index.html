@@ -44,8 +44,6 @@
   
   
   
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
-  
 <meta name="generator" content="Hexo 6.2.0"></head>
 
 
@@ -365,6 +363,13 @@
         
 
         
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/07/31/hello-world/#comments" class="article-comment-link">Comments</a></span>
         
@@ -427,7 +432,9 @@
     
   <section id="comments">
   	
-           
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
     
   </section>
 
@@ -570,30 +577,29 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
 
 
 
    
     
-  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-  <script type="text/javascript">
-  var gitalk = new Gitalk({
-    clientID: 'c921c50aedbd0e869105#必须. GitHub Application Client ID.',
-    clientSecret: 'dc5796e146e2ff837e91106e51c5efa33cf77452#必须. GitHub Application Client Secret.',
-    repo: 'https://github.com/hdu-r3drum/CommentSystem.git#必须. GitHub repository.',
-    owner: 'hdu-r3drum#必须. GitHub repository 所有者，可以是个人或者组织。',
-    admin: ['hdu-r3drum#必须. GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。'],
-    id: md5(location.pathname),
-    distractionFreeMode: true,
-    language: 'zh-CN',
-    enableHotKey: 'true'
-  })
-  gitalk.render('comments')
-  </script>
-      
+    <script defer>
+    var disqus_config = function () {
+        
+            this.page.url = 'hhttps://hdu-r3drum.github.io/2022/07/31/hello-world/';
+        
+        this.page.identifier = 'hello-world';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'r3drumblog' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
 
 
 
