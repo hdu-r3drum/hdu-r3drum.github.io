@@ -6,7 +6,7 @@
   <link href="https://hdu-r3drum.github.io/atom.xml" rel="self"/>
   
   <link href="https://hdu-r3drum.github.io/"/>
-  <updated>2022-08-04T04:46:10.707Z</updated>
+  <updated>2022-08-04T14:12:28.116Z</updated>
   <id>https://hdu-r3drum.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何查看自己IP处于几层NAT</title>
+    <link href="https://hdu-r3drum.github.io/2022/08/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1IP%E5%A4%84%E4%BA%8E%E5%87%A0%E5%B1%82NAT/"/>
+    <id>https://hdu-r3drum.github.io/2022/08/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1IP%E5%A4%84%E4%BA%8E%E5%87%A0%E5%B1%82NAT/</id>
+    <published>2022-08-04T12:48:31.000Z</published>
+    <updated>2022-08-04T14:12:28.116Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>中国分配到的IPv4地址是很少的，甚至不如美国某些大学手上的多，这也造成了国内网络环境较差，往往个人用户经常处于几层NAT中。</p><h2 id="查看方式"><a href="#查看方式" class="headerlink" title="查看方式"></a>查看方式</h2><p>Linux下使用traceroute命令（Windows则为tracert）</p><p>以macOS Monterey 12.4为例</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># traceroute 8.8.8.8</span></span><br></pre></td></tr></table></figure><p>其中，8.8.8.8为谷歌的DNS服务器，通过traceroute查看路由器的hop记录</p><p><img src="https://hdu-r3drum.github.io/BlogImages/image-20220804220212138.png" alt="image-20220804220010470"></p><p>第一跳：192.168.1.1 本地默认Gateway</p><p>第二跳：10.84.0.1 局域网保留地址，到此还无公网ip</p><p>第三跳：211.140.63.73 浙江省温州市，到此为公网ip</p><p>可见，博主家庭网络位于两层NAT，第一层为家用路由器，第二层路由器具体位置不得而知，可能为街道或者小区的网关，想要实现端口映射来实现外网访问内网不现实（无法配置第二层NAT的端口映射）</p><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>可以尝试通过内网穿透来实现外网访问内网</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;中国分配到的IPv4地址是很少的，甚至不如美国某些大学手上的多，这也造成了国内网络环境较差，往往个人用户经常处于几层NAT中。&lt;/p&gt;
+&lt;h</summary>
+      
+    
+    
+    
+    
+    <category term="Tutorial" scheme="https://hdu-r3drum.github.io/tags/Tutorial/"/>
+    
+  </entry>
   
   <entry>
     <title>关于M1 Macbook上docker容器自动退出</title>
