@@ -6,7 +6,7 @@
   <link href="hhttps://hdu-r3drum.github.io/atom.xml" rel="self"/>
   
   <link href="hhttps://hdu-r3drum.github.io/"/>
-  <updated>2022-08-02T09:59:45.522Z</updated>
+  <updated>2022-08-04T04:46:10.707Z</updated>
   <id>hhttps://hdu-r3drum.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于M1 Macbook上docker容器自动退出</title>
+    <link href="hhttps://hdu-r3drum.github.io/2022/08/04/关于M1-Macbook上docker容器自动退出/"/>
+    <id>hhttps://hdu-r3drum.github.io/2022/08/04/关于M1-Macbook上docker容器自动退出/</id>
+    <published>2022-08-04T04:11:33.000Z</published>
+    <updated>2022-08-04T04:46:10.707Z</updated>
+    
+    <content type="html"><![CDATA[<p>开发环境：MacBook Air 2020 M1Parallels DesktopKali Linux</p><p>在搭建docker环境时，遇到了一些问题：</p><p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220804121951242.png" alt="image-20220804121951242"></p><p>发现，每次运行一个镜像，使用docker ps命令都查不到这个镜像的进程</p><p>注意到了docker run的WARNING提醒：镜像架构和本机不一样</p><p>于是，我便使用下面这条命令进行镜像运行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker run -d 458575a05d97 -- platform amd64</span></span><br></pre></td></tr></table></figure><p>可惜，结果并不如人意</p><p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220804122341776.png" alt="image-20220804122341776"></p><p>查询日志文件：</p><p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220804122538075.png" alt="image-20220804122538075"></p><p>好像明白了什么….</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker inspect 491262afb</span></span><br></pre></td></tr></table></figure><p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220804123333396.png" alt="image-20220804123333396"></p><p>这个镜像支持的架构是amd64，但M1是arm架构芯片，指令集和指令格式并不通用</p><p>目前我还没找到可行的解决方法</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;开发环境：MacBook Air 2020 M1	Parallels Desktop	Kali Linux&lt;/p&gt;
+&lt;p&gt;在搭建docker环境时，遇到了一些问题：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://hdu-r3drum.github.io/images/B</summary>
+      
+    
+    
+    
+    
+    <category term="Development diary" scheme="hhttps://hdu-r3drum.github.io/tags/Development-diary/"/>
+    
+  </entry>
   
   <entry>
     <title>什么是token？什么是session？什么是cookie？</title>

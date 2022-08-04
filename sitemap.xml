@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>hhttps://hdu-r3drum.github.io/2022/08/04/关于M1-Macbook上docker容器自动退出/</loc>
+    
+    <lastmod>2022-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>hhttps://hdu-r3drum.github.io/2022/08/02/什么是token？什么是session？什么是cookie？/</loc>
     
     <lastmod>2022-08-02</lastmod>
@@ -49,7 +58,7 @@
 
   <url>
     <loc>hhttps://hdu-r3drum.github.io</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,14 +66,21 @@
   
   <url>
     <loc>hhttps://hdu-r3drum.github.io/tags/Tutorial/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>hhttps://hdu-r3drum.github.io/tags/Notes/</loc>
-    <lastmod>2022-08-02</lastmod>
+    <lastmod>2022-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>hhttps://hdu-r3drum.github.io/tags/Development-diary/</loc>
+    <lastmod>2022-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
