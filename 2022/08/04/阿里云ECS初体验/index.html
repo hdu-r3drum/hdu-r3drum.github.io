@@ -28,10 +28,10 @@
 <meta property="og:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100400001.png">
 <meta property="og:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100500002.png">
 <meta property="og:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100500003.png">
-<meta property="og:image" content="https://ucc.alicdn.com/pic/developer-ecology/d75f868e0f0845e19af491fbba8983a3.png">
-<meta property="og:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100500004.png">
+<meta property="og:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100600004.png">
+<meta property="og:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100600005.png">
 <meta property="article:published_time" content="2022-08-04T15:44:20.000Z">
-<meta property="article:modified_time" content="2022-08-05T02:12:03.564Z">
+<meta property="article:modified_time" content="2022-08-05T02:27:48.571Z">
 <meta property="article:author" content="L">
 <meta property="article:tag" content="Development diary">
 <meta name="twitter:card" content="summary">
@@ -403,7 +403,7 @@
 <p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100500003.png" alt="image.png"></p>
 <p>可以发现home文件夹下已经多出了alice用户文件夹</p>
 <p>突然有了个想法，如果alice想要尝试获取root权限会发生什么呢？</p>
-<p><img src="https://ucc.alicdn.com/pic/developer-ecology/d75f868e0f0845e19af491fbba8983a3.png" alt="图像_2022-08-04_231203587.png"></p>
+<p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100600004.png" alt="图像_2022-08-04_231203587.png"></p>
 <p>可见，没有分配用户组的情况下，是无法使用sudo命令的，上网查阅文献，Linux系统控制用户组文件位于&#x2F;etc下的sudoers文件</p>
 <p>“This incident will be reported”</p>
 <p>那么这个敏感操作会被记录到哪里呢？</p>
@@ -414,7 +414,7 @@
 <p> <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/13546933/where-are-sudo-incidents-reported#comment46645742_13547008">Mar 23, 2015 at 19:09</a>“</p>
 <p>“我知道这是标记’debian’,但我来找Ubuntu.所以为了其他人寻找Ubuntu输出日志的好处,我发现了sudo失败:<code>/ var/log/auth.log</code>”</p>
 <p>于是乎，我键入cat &#x2F;var&#x2F;log&#x2F;auth.log:</p>
-<p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100500004.png" alt="图像_2022-08-04_233335716.png"></p>
+<p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220805100600005.png" alt="图像_2022-08-04_233335716.png"></p>
 <p>“Aug  4 23:27:05 r3drum systemd: pam_unix(systemd-user:session): session opened for user alice(uid&#x3D;1000) by (uid&#x3D;0) Aug  4 23:27:14 r3drum sudo:    alice : user NOT in sudoers ; TTY&#x3D;pts&#x2F;1 ; PWD&#x3D;&#x2F;home&#x2F;alice ; USER&#x3D;root ; COMMAND&#x3D;&#x2F;usr&#x2F;bin&#x2F;su”</p>
 <p>——我找到了这条可疑记录</p>
 <h2 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h2><p>第一次使用阿里云服务器，部署和实例化的操作还是很简单的，几乎都是一键式完成，本次实验主要是了解了Linux的基本操作和ssh登陆的配置，接下来将继续深入学习Linux和服务器等知识</p>
