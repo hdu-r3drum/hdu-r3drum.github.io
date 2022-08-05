@@ -25,13 +25,13 @@
 <meta property="og:site_name" content="R3drum">
 <meta property="og:description" content="前言中国分配到的IPv4地址是很少的，甚至不如美国某些大学手上的多，这也造成了国内网络环境较差，往往个人用户经常处于几层NAT中。 查看方式Linux下使用traceroute命令（Windows则为tracert） 以macOS Monterey 12.4为例 1# traceroute 8.8.8.8  其中，8.8.8.8为谷歌的DNS服务器，通过traceroute查看路由器的hop记录">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hdu-r3drum.github.io/BlogImages/image-20220804220212138.png">
+<meta property="og:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220804220212138.png">
 <meta property="article:published_time" content="2022-08-04T12:48:31.000Z">
-<meta property="article:modified_time" content="2022-08-04T14:12:28.116Z">
+<meta property="article:modified_time" content="2022-08-05T02:13:23.444Z">
 <meta property="article:author" content="L">
 <meta property="article:tag" content="Tutorial">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hdu-r3drum.github.io/BlogImages/image-20220804220212138.png">
+<meta name="twitter:image" content="https://hdu-r3drum.github.io/images/BlogImages/image-20220804220212138.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://hdu-r3drum.github.io/2022/08/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%B7%B1IP%E5%A4%84%E4%BA%8E%E5%87%A0%E5%B1%82NAT/index.html">
   
@@ -391,7 +391,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># traceroute 8.8.8.8</span></span><br></pre></td></tr></table></figure>
 
 <p>其中，8.8.8.8为谷歌的DNS服务器，通过traceroute查看路由器的hop记录</p>
-<p><img src="https://hdu-r3drum.github.io/BlogImages/image-20220804220212138.png" alt="image-20220804220010470"></p>
+<p><img src="https://hdu-r3drum.github.io/images/BlogImages/image-20220804220212138.png" alt="image-20220804220010470"></p>
 <p>第一跳：192.168.1.1 本地默认Gateway</p>
 <p>第二跳：10.84.0.1 局域网保留地址，到此还无公网ip</p>
 <p>第三跳：211.140.63.73 浙江省温州市，到此为公网ip</p>
