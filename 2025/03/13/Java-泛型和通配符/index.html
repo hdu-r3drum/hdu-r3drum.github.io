@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://hdu-r3drum.github.io/2025/03/13/java-iterator-浅析/"/>
+    <link rel="canonical" href="https://hdu-r3drum.github.io/2025/03/13/java-泛型和通配符/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,14 +23,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Iterator 浅析">
-<meta property="og:url" content="https://hdu-r3drum.github.io/2025/03/13/Java-Iterator-%E6%B5%85%E6%9E%90/index.html">
+<meta property="og:title" content="Java 泛型和通配符">
+<meta property="og:url" content="https://hdu-r3drum.github.io/2025/03/13/Java-%E6%B3%9B%E5%9E%8B%E5%92%8C%E9%80%9A%E9%85%8D%E7%AC%A6/index.html">
 <meta property="og:site_name" content="R3drum | H3ll0 W0rld!">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hdu-r3drum.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-03-13T02:32:03.000Z">
-<meta property="article:modified_time" content="2025-03-13T02:55:33.903Z">
+<meta property="article:published_time" content="2025-03-13T07:34:32.000Z">
+<meta property="article:modified_time" content="2025-03-13T07:49:18.076Z">
 <meta property="article:author" content="Edwards">
 <meta property="article:tag" content="Java学习">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
     
     <title>
         
-            Java Iterator 浅析 | R3drum&#39;s Blog
+            Java 泛型和通配符 | R3drum&#39;s Blog
         
     </title>
 
@@ -235,7 +235,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Java Iterator 浅析</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Java 泛型和通配符</h1>
 			</div>
 			
 		</div>
@@ -256,15 +256,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-03-13 10:32:03</span>
-        <span class="mobile">2025-03-13 10:32:03</span>
+        <span class="desktop">2025-03-13 15:34:32</span>
+        <span class="mobile">2025-03-13 15:34:32</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-03-13 10:55:33</span>
-            <span class="mobile">2025-03-13 10:55:33</span>
+            <span class="desktop">2025-03-13 15:49:18</span>
+            <span class="mobile">2025-03-13 15:49:18</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -302,78 +302,107 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>Java 迭代器的底层实现原理与<strong>集合类型</strong>密切相关，不同集合的迭代器实现方式不同，但核心逻辑遵循<strong>迭代器模式</strong>，其本质是<strong>解耦遍历逻辑与数据结构</strong>。以下以 ArrayList 和 LinkedList 为例，详解迭代器的底层实现逻辑</p>
-<h3 id="核心设计"><a href="#核心设计" class="headerlink" title="核心设计"></a>核心设计</h3><h4 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Iterator</span>&lt;E&gt; &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span>;</span><br><span class="line">    E <span class="title function_">next</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">()</span>; <span class="comment">// 可选操作（默认抛异常）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<h4 id="快速失败机制（Fail-Fast）"><a href="#快速失败机制（Fail-Fast）" class="headerlink" title="快速失败机制（Fail-Fast）"></a>快速失败机制（Fail-Fast）</h4><p>迭代器内部维护 <code>modCount </code>（修改计数器），当检测到集合在迭代过程中被意外修改（如直接调用集合的<code>add()</code>或 <code>remove()</code>），立即抛出<code>ConcurrentModificationException</code>。</p>
-<h3 id="ArrayList-的迭代器实现"><a href="#ArrayList-的迭代器实现" class="headerlink" title="ArrayList 的迭代器实现"></a>ArrayList 的迭代器实现</h3><h4 id="内部类-Itr"><a href="#内部类-Itr" class="headerlink" title="内部类 Itr"></a>内部类 Itr</h4><p>ArrayList的迭代器通过内部类Itr实现：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Itr</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span>&lt;E&gt; &#123;</span><br><span class="line">    <span class="type">int</span> cursor;       <span class="comment">// 下一个要返回的元素索引</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">lastRet</span> <span class="operator">=</span> -<span class="number">1</span>; <span class="comment">// 最后返回的元素索引（用于删除操作）</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">expectedModCount</span> <span class="operator">=</span> modCount; <span class="comment">// 初始记录集合的修改次数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> cursor != size; <span class="comment">// 判断是否还有元素</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> E <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">        checkForComodification(); <span class="comment">// 检查是否被并发修改</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> cursor;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NoSuchElementException</span>();</span><br><span class="line">        Object[] elementData = ArrayList.<span class="built_in">this</span>.elementData;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= elementData.length)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ConcurrentModificationException</span>();</span><br><span class="line">        cursor = i + <span class="number">1</span>;          <span class="comment">// 移动游标</span></span><br><span class="line">        <span class="keyword">return</span> (E) elementData[lastRet = i]; <span class="comment">// 返回元素并记录索引</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查并发修改的核心方法</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">checkForComodification</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ConcurrentModificationException</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h4 id="关键逻辑"><a href="#关键逻辑" class="headerlink" title="关键逻辑"></a>关键逻辑</h4><ul>
-<li><strong>游标控制</strong>：<code>cursor</code> 表示下一个待访问元素的索引，<code>lastRet</code> 记录最近一次访问的索引（用于 <code>remove()</code> 操作）。</li>
-<li><strong>快速失败</strong>：通过比较 <code>modCount</code>（集合的修改次数）与 <code>expectedModCount</code>（迭代器记录的初始修改次数），若不一致则说明集合被意外修改。</li>
+			<p>泛型中的<code>&lt;T&gt;</code>是类型参数，通常用于类、接口或方法的声明中，表示一个具体的类型，可以在代码中实际使用。而<code>&lt;?&gt;</code>则是通配符，用于更灵活的类型匹配，通常在方法参数或变量声明中使用，表示未知类型。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>List<code>&lt;T&gt;</code> 是泛型类的具体实例化（如 <code>List&lt;String&gt;</code>）</li>
+<li><code>List&lt;?&gt;</code> 表示一个未知类型的 <code>List</code>，无法直接写入（<code>list.add(...) </code>会编译报错）</li>
+<li>不能相互替代，<code>&lt;T&gt;</code> 用于定义具体类型，而 <code>&lt;?&gt;</code> 用于接受未知类型，二者用途不同。</li>
 </ul>
-<h3 id="LinkedList-的迭代器实现"><a href="#LinkedList-的迭代器实现" class="headerlink" title="LinkedList 的迭代器实现"></a>LinkedList 的迭代器实现</h3><h4 id="双向链表遍历"><a href="#双向链表遍历" class="headerlink" title="双向链表遍历"></a>双向链表遍历</h4><p>LinkedList的迭代器通过内部类ListItr实现，利用节点指针进行遍历：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">ListItr</span> <span class="keyword">implements</span> <span class="title class_">ListIterator</span>&lt;E&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> Node&lt;E&gt; lastReturned; <span class="comment">// 最近返回的节点</span></span><br><span class="line">    <span class="keyword">private</span> Node&lt;E&gt; next;         <span class="comment">// 下一个要访问的节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> nextIndex;        <span class="comment">// 下一个节点的索引</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">expectedModCount</span> <span class="operator">=</span> modCount;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> nextIndex &lt; size; <span class="comment">// 根据索引判断是否还有元素</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> E <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">if</span> (!hasNext())</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NoSuchElementException</span>();</span><br><span class="line">        lastReturned = next;        <span class="comment">// 记录当前节点</span></span><br><span class="line">        next = next.next;           <span class="comment">// 移动指针到下一个节点</span></span><br><span class="line">        nextIndex++;</span><br><span class="line">        <span class="keyword">return</span> lastReturned.item;   <span class="comment">// 返回数据</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<h4 id="关键差异"><a href="#关键差异" class="headerlink" title="关键差异"></a>关键差异</h4><ul>
-<li><strong>节点遍历</strong>：直接操作链表节点的 <code>next</code> 和 <code>prev</code> 指针，时间复杂度为 <strong>O(1)</strong>。</li>
-<li><strong>索引维护</strong>：<code>nextIndex</code> 用于支持 <code>ListIterator</code> 的 <code>previous()</code> 和 <code>add()</code> 操作。</li>
+<h3 id="类型参数（Type-Parameter）"><a href="#类型参数（Type-Parameter）" class="headerlink" title="类型参数（Type Parameter）"></a>类型参数（Type Parameter）</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><ul>
+<li><code>&lt;T&gt;</code> 是一个具体的类型变量，用于声明泛型类、接口或方法中的类型参数。</li>
 </ul>
-<h3 id="迭代器性能对比"><a href="#迭代器性能对比" class="headerlink" title="迭代器性能对比"></a>迭代器性能对比</h3><table>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><p>明确指定类型：<code>T</code> 在代码中可以作为一个具体的类型被引用（如方法的参数、返回值、变量类型等）。</p>
+</li>
+<li><p>需要显式声明：必须在类、方法或接口的泛型声明中定义（如 <code>class Box&lt;T&gt; &#123; ... &#125;</code>）。</p>
+</li>
+<li><p>允许类型操作：可以对<code>T</code>进行类型约束（如<code> &lt;T extends Number&gt;</code>）或直接使用<code>T</code> 类型的方法。</p>
+</li>
+</ul>
+<h4 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型类定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> T content;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setContent</span><span class="params">(T content)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getContent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用具体类型实例化</span></span><br><span class="line">Box&lt;String&gt; stringBox = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;();</span><br><span class="line">stringBox.setContent(<span class="string">&quot;Hello&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+<h3 id="通配符（Wildcard）"><a href="#通配符（Wildcard）" class="headerlink" title="通配符（Wildcard）"></a>通配符（Wildcard）</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<li><code>&lt;?&gt;</code> 表示未知类型，用于泛型代码中接受不特定类型的参数，提供更灵活的类型匹配。</li>
+</ul>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><p><strong>类型未知</strong>：无法直接引用 ? 的具体类型（如不能声明 List&lt;?&gt; list &#x3D; new ArrayList<String>(); 后直接操作 list.add(“abc”)）。</p>
+</li>
+<li><p><strong>无需声明</strong>：直接在代码中使用（如方法参数 void printList(List&lt;?&gt; list)）。</p>
+</li>
+<li><p><strong>支持上下界</strong>：&lt;? extends T&gt;：接受 T 或其子类（生产者场景，只能读取）。&lt;? super T&gt;：接受 T 或其父类（消费者场景，可以写入）。</p>
+</li>
+</ul>
+<h4 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码"></a>示例代码</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用通配符作为方法参数</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printList</span><span class="params">(List&lt;?&gt; list)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (Object item : list) &#123;</span><br><span class="line">        System.out.println(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用上下界通配符</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">copyNumbers</span><span class="params">(List&lt;? extends Number&gt; src, List&lt;? <span class="built_in">super</span> Number&gt; dest)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (Number num : src) &#123;</span><br><span class="line">        dest.add(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><table>
 <thead>
 <tr>
-<th>集合类型</th>
-<th>迭代器实现方式</th>
-<th>时间复杂度</th>
-<th>适用场景</th>
+<th>特性</th>
+<th>&lt;T&gt;</th>
+<th>&lt;?&gt;</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>ArrayList</td>
-<td>数组索引游标</td>
-<td>O(1)</td>
-<td>随机访问、高频遍历</td>
+<td><strong>类型明确性</strong></td>
+<td>具体类型（如 String、Integer）</td>
+<td>未知类型（只能通过上下界约束）</td>
 </tr>
 <tr>
-<td>LinkedList</td>
-<td>节点指针移动</td>
-<td>O(1)</td>
-<td>频繁插入&#x2F;删除、顺序访问</td>
+<td><strong>使用场景</strong></td>
+<td>泛型类、方法、接口的定义</td>
+<td>方法参数、变量声明（接受未知类型）</td>
 </tr>
 <tr>
-<td>HashSet</td>
-<td>哈希桶遍历</td>
-<td>O(n)</td>
-<td>无序遍历</td>
+<td><strong>能否直接操作类型</strong></td>
+<td>可以（如 T value &#x3D; getValue()）</td>
+<td>不能（需通过 Object 或上下界）</td>
 </tr>
 <tr>
-<td>TreeSet</td>
-<td>红黑树中序遍历</td>
-<td>O(log n)</td>
-<td>有序遍历</td>
+<td><strong>类型约束</strong></td>
+<td>支持 <T extends SomeClass></td>
+<td>支持 &lt;? extends SomeClass&gt;</td>
+</tr>
+<tr>
+<td><strong>是否允许写入数据</strong></td>
+<td>允许（类型已知）</td>
+<td>通配符无界时不允许写入（类型未知）</td>
 </tr>
 </tbody></table>
-<h3 id="迭代器正确使用"><a href="#迭代器正确使用" class="headerlink" title="迭代器正确使用"></a>迭代器正确使用</h3><h4 id="禁止并发修改"><a href="#禁止并发修改" class="headerlink" title="禁止并发修改"></a>禁止并发修改</h4><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误示例：迭代时直接操作集合</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line"><span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> it.next();</span><br><span class="line">    list.remove(s); <span class="comment">// 抛出 ConcurrentModificationException</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确做法：通过迭代器的 remove()</span></span><br><span class="line">it.remove(); <span class="comment">// 安全删除当前元素</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><h4 id="适用场景："><a href="#适用场景：" class="headerlink" title="&lt;T&gt; 适用场景："></a>&lt;T&gt; 适用场景：</h4><ul>
+<li><p>需要定义泛型类、方法或接口时。</p>
+</li>
+<li><p>需要在代码中直接操作具体类型（如返回值、参数类型）。</p>
+</li>
+<li><p>需要对类型进行明确的约束（如 <code>&lt;T extends Comparable&lt;T&gt;&gt;</code>）</p>
+</li>
+</ul>
+<h4 id="适用场景：-1"><a href="#适用场景：-1" class="headerlink" title="&lt;?&gt; 适用场景："></a>&lt;?&gt; 适用场景：</h4><ul>
+<li><p>需要接受不特定类型的泛型参数（如工具类方法）。</p>
+</li>
+<li><p>需要灵活的类型匹配（如 <code>List&lt;? extends Number&gt;</code> 接受 <code>List&lt;Integer&gt;</code> 或 <code>List&lt;Double&gt;</code>）。</p>
+</li>
+<li><p>需要限制对泛型容器的写入操作（如使用 <code>&lt;?&gt;</code> 的集合只能读取）。</p>
+</li>
+</ul>
+<h3 id="典型示范"><a href="#典型示范" class="headerlink" title="典型示范"></a>典型示范</h3><div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 泛型方法定义</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">getFirstElement</span><span class="params">(List&lt;T&gt; list)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> list.get(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用时类型明确</span></span><br><span class="line">List&lt;String&gt; names = Arrays.asList(<span class="string">&quot;Alice&quot;</span>, <span class="string">&quot;Bob&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">firstName</span> <span class="operator">=</span> getFirstElement(names); <span class="comment">// 返回 String 类型</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接受任意类型的 List</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printAll</span><span class="params">(List&lt;?&gt; list)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (Object item : list) &#123;</span><br><span class="line">        System.out.println(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用时无需关心具体类型</span></span><br><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">List&lt;String&gt; words = Arrays.asList(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;World&quot;</span>);</span><br><span class="line">printAll(numbers); <span class="comment">// 接受 List&lt;Integer&gt;</span></span><br><span class="line">printAll(words);  <span class="comment">// 接受 List&lt;String&gt;</span></span><br></pre></td></tr></table></figure></div>
 
-<h4 id="Fail-Safe-迭代器"><a href="#Fail-Safe-迭代器" class="headerlink" title="Fail-Safe 迭代器"></a>Fail-Safe 迭代器</h4><p>某些集合（如 <code>CopyOnWriteArrayList</code>）使用数据快照实现 Fail-Safe 迭代器，允许在迭代期间修改集合：</p>
-<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">CopyOnWriteArrayList</span>&lt;&gt;();</span><br><span class="line">Iterator&lt;String&gt; it = list.iterator();</span><br><span class="line">list.add(<span class="string">&quot;New Element&quot;</span>); <span class="comment">// 不会影响迭代器</span></span><br></pre></td></tr></table></figure></div>
 		</div>
 
 		
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> Java Iterator 浅析</li>
+        <li><strong>标题:</strong> Java 泛型和通配符</li>
         <li><strong>作者:</strong> Edwards</li>
         <li><strong>创建于
-                :</strong> 2025-03-13 10:32:03</li>
+                :</strong> 2025-03-13 15:34:32</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-03-13 10:55:33
+                    :</strong> 2025-03-13 15:49:18
             </li>
         
         <li>
-            <strong>链接:</strong> https://hdu-r3drum.github.io/2025/03/13/Java-Iterator-浅析/
+            <strong>链接:</strong> https://hdu-r3drum.github.io/2025/03/13/Java-泛型和通配符/
         </li>
         <li>
             <strong>
@@ -407,12 +436,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/03/13/Java-%E6%B3%9B%E5%9E%8B%E5%92%8C%E9%80%9A%E9%85%8D%E7%AC%A6/">
+				<a class="prev" rel="prev" href="/2025/03/13/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-Median-of-Two-Sorted-Arrays/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">Java 泛型和通配符</span>
+						<span class="post-nav-title-item">LeetCode刷题记录 [Hard]Median of Two Sorted Arrays</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -420,9 +449,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/03/13/hello-world/">
+				<a class="next" rel="next" href="/2025/03/13/Java-Iterator-%E6%B5%85%E6%9E%90/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">Hello World</span>
+						<span class="post-nav-title-item">Java Iterator 浅析</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -486,8 +515,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">Java Iterator 浅析</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1"><span class="nav-text">核心设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList-%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%AE%9E%E7%8E%B0"><span class="nav-text">ArrayList 的迭代器实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList-%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%AE%9E%E7%8E%B0"><span class="nav-text">LinkedList 的迭代器实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94"><span class="nav-text">迭代器性能对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8"><span class="nav-text">迭代器正确使用</span></a></li></ol>
+		<div class="page-title">Java 泛型和通配符</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0%EF%BC%88Type-Parameter%EF%BC%89"><span class="nav-text">类型参数（Type Parameter）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%EF%BC%88Wildcard%EF%BC%89"><span class="nav-text">通配符（Wildcard）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94"><span class="nav-text">对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E7%A4%BA%E8%8C%83"><span class="nav-text">典型示范</span></a></li></ol>
 
 	</div>
 </div>
